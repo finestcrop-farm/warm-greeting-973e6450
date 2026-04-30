@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Award, Users, Briefcase, Heart, Church, Sparkles } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import nageshPortrait from "@/assets/nagesh-portrait.png";
 
 const values = [
   {
@@ -67,14 +68,17 @@ const About = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-6xl font-bold text-primary-foreground mx-auto mb-4">
-                    NG
-                  </div>
-                  <p className="text-2xl font-bold">Nagesh G</p>
-                  <p className="text-muted-foreground">Founder & Lead Mentor</p>
-                </div>
+              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 shadow-2xl">
+                <img
+                  src={nageshPortrait}
+                  alt="Nagesh G — Founder & Lead Mentor of Dreambuilderss"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-background border border-border rounded-2xl px-6 py-3 shadow-xl text-center whitespace-nowrap">
+                <p className="text-lg font-bold">Nagesh G</p>
+                <p className="text-sm text-muted-foreground">Founder & Lead Mentor</p>
               </div>
             </div>
           </div>
