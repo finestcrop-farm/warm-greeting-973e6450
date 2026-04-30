@@ -34,7 +34,10 @@ const Auth = () => {
 
   const onSignIn = async (data: CredForm) => {
     setSubmitting(true);
-    const { error } = await supabase.auth.signInWithPassword(data);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
     setSubmitting(false);
     if (error) return toast.error(error.message);
     toast.success("Signed in");
@@ -44,7 +47,8 @@ const Auth = () => {
   const onSignUp = async (data: CredForm) => {
     setSubmitting(true);
     const { error } = await supabase.auth.signUp({
-      ...data,
+      email: data.email,
+      password: data.password,
       options: { emailRedirectTo: `${window.location.origin}/admin` },
     });
     setSubmitting(false);
