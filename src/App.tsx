@@ -15,6 +15,7 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import EnrollmentReceipt from "./pages/EnrollmentReceipt";
+import Unsubscribe from "./pages/Unsubscribe";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminHome from "./pages/admin/AdminHome";
 import AdminCourses from "./pages/admin/AdminCourses";
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/receipt" element={<EnrollmentReceipt />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route
               path="/admin"
               element={
