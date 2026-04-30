@@ -51,19 +51,29 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("contact_submissions").insert({
+      const id = crypto.randomUUID();
+      const submission = {
+        id,
         name: formData.name.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         interest: formData.interest,
         message: formData.message.trim() || null,
-      });
+      };
 
+      const { error } = await supabase.from("contact_submissions").insert(submission);
       if (error) throw error;
+
+      // Fire notification emails (non-blocking — don't fail the form on email errors)
+      supabase.functions
+        .invoke("notify-new-submission", {
+          body: { type: "contact", ...submission },
+        })
+        .catch((err) => console.error("Notify failed:", err));
 
       toast({
         title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
+        description: "We'll get back to you within 24 hours. Check your inbox for a confirmation.",
       });
 
       setFormData({
