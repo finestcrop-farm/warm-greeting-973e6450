@@ -214,6 +214,19 @@ export type Database = {
         }
         Returns: boolean
       }
+      lookup_enrollment_receipt: {
+        Args: { _email: string; _order_id: string }
+        Returns: {
+          amount: number
+          course_title: string
+          created_at: string
+          email: string
+          payment_status: string
+          razorpay_order_id: string
+          razorpay_payment_id: string
+          student_name: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "user"
