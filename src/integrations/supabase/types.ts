@@ -14,7 +14,173 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      blog_posts: {
+        Row: {
+          author: string
+          category: string
+          content: string
+          cover_image: string | null
+          created_at: string
+          excerpt: string
+          id: string
+          is_published: boolean
+          published_at: string | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          category: string
+          content: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt: string
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string
+          id?: string
+          is_published?: boolean
+          published_at?: string | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          interest: string
+          message: string | null
+          name: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          interest: string
+          message?: string | null
+          name: string
+          phone: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          interest?: string
+          message?: string | null
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration: string | null
+          fee: number
+          format: string | null
+          id: string
+          is_active: boolean
+          next_batch_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          fee: number
+          format?: string | null
+          id?: string
+          is_active?: boolean
+          next_batch_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          fee?: number
+          format?: string | null
+          id?: string
+          is_active?: boolean
+          next_batch_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      enrollments: {
+        Row: {
+          amount: number
+          course_id: string
+          created_at: string
+          email: string
+          id: string
+          payment_status: string
+          phone: string
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          student_name: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          course_id: string
+          created_at?: string
+          email: string
+          id?: string
+          payment_status?: string
+          phone: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          student_name: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          course_id?: string
+          created_at?: string
+          email?: string
+          id?: string
+          payment_status?: string
+          phone?: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          student_name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
