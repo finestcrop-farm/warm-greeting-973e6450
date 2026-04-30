@@ -34,21 +34,39 @@ export const EnrollmentModal = ({ course, isOpen, onClose }: EnrollmentModalProp
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("enrollments").insert({
+      const id = crypto.randomUUID();
+      const submission = {
+        id,
         course_id: course.id,
         student_name: formData.student_name.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         amount: course.fee,
         payment_status: "pending",
-      });
+      };
 
+      const { error } = await supabase.from("enrollments").insert(submission);
       if (error) throw error;
+
+      // Fire notification emails (non-blocking)
+      supabase.functions
+        .invoke("notify-new-submission", {
+          body: {
+            type: "enrollment",
+            id,
+            studentName: submission.student_name,
+            email: submission.email,
+            phone: submission.phone,
+            courseTitle: course.title,
+            amount: course.fee,
+          },
+        })
+        .catch((err) => console.error("Notify failed:", err));
 
       setIsSuccess(true);
       toast({
         title: "Registration Successful!",
-        description: "Our team will contact you shortly with payment details.",
+        description: "Check your inbox — we've sent a confirmation email.",
       });
     } catch (error) {
       console.error("Enrollment error:", error);
