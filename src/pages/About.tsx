@@ -67,16 +67,16 @@ const About = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative pb-8">
               <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 shadow-2xl">
                 <img
                   src={nageshPortrait}
                   alt="Nagesh G — Founder & Lead Mentor of Dreambuilderss"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-background border border-border rounded-2xl px-6 py-3 shadow-xl text-center whitespace-nowrap">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-background border border-border rounded-2xl px-6 py-3 shadow-xl text-center whitespace-nowrap">
                 <p className="text-lg font-bold">Nagesh G</p>
                 <p className="text-sm text-muted-foreground">Founder & Lead Mentor</p>
               </div>
